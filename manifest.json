@@ -3,11 +3,18 @@
     "version": "0.1",
     "manifest_version": 3,
     "description": "Adds a mileage filter for vehicles to Facebook marketplace.",
+    "permissions": ["activeTab", "scripting"],
     "content_scripts": [
         {
             "matches": ["https://www.facebook.com/marketplace/*"],
             "css": ["mileage-filter.css"],
             "js": ["getFirstChild.js", "interface.js", "filter.js"]
         }
-    ]
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    }
 }
