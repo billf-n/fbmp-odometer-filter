@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sidepanel</title>
+    <title>Facebook Marketplace odometer filter</title>
+    <style>
+        #filterForm {
+            /* display: flex;
+            flex-direction: column;
+            width: 80%; */
+            justify-self: center;
+        }
+      </style>
   </head>
   <body>
-    <h1>Filter Facebook Marketplace listings by odometer:</h1>
-    <label for="lowFilter">Low</label>
-    <input list="odometer-presets" id="lowFilter" name="lowFilter" type="search">
-    <span>to</span>
-    <label for="highFilter">High</label>
-    <input list="odometer-presets" id="highFilter" name="highFilter" type="search">
-    <button id="filter">Filter</button>
-    <datalist id="odometer-presets">
-      <option value="0"></option>
-      <option value="10000"></option>
-      <option value="20000"></option>
-      <option value="50000"></option>
-      <option value="75000"></option>
-      <option value="100000"></option>
-      <option value="125000"></option>
-      <option value="150000"></option>
-      <option value="175000"></option>
-      <option value="200000"></option>
-    </datalist>
+    <h1>Filter by odometer:</h1>
+    <div style="display: block;">
+        <div id="filterForm">
+            <label for="lowFilter">Low</label>
+            <input list="odometer-presets" id="lowFilter" name="lowFilter" type="search">
+            <span>to</span>
+            <label for="highFilter">High</label>
+            <input list="odometer-presets" id="highFilter" name="highFilter" type="search">
+            <button id="filter">Filter</button>
+            <datalist id="odometer-presets">
+              <option value="0"></option>
+              <option value="10000"></option>
+              <option value="20000"></option>
+              <option value="50000"></option>
+              <option value="75000"></option>
+              <option value="100000"></option>
+              <option value="125000"></option>
+              <option value="150000"></option>
+              <option value="175000"></option>
+              <option value="200000"></option>
+            </datalist>
+        </div>
+    </div>
+    
+    
 
     <script src="popup.js"></script>
   </body>
