@@ -3,24 +3,127 @@
   <head>
     <title>Facebook Marketplace odometer filter</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            width: min-content;
+        }
+
+        .fbFont {
+            font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
         #filterForm {
             /* display: flex;
-            flex-direction: column;
-            width: 80%; */
-            justify-self: center;
+            flex-direction: column; */
+            width: min-content;
+            margin: 1.5em 1em;
         }
+
+        #filterHeading {
+            margin-inline-start: 0px;
+            margin-top: 0px;
+        }
+
+        #range {
+            display: flex;
+            margin-bottom: 1.5em;
+        }
+
+        .filterWrap {
+            display: grid;
+        }
+
+        .filterDropdown {
+            position: absolute;
+            justify-self: right;
+            height: 36px;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .filterInput {
+            width: 160px;
+            height: 36px;
+            border-radius: 6px;
+            border-width: 1px;
+            padding: 8px 12px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        #to {
+            padding: 0px 12px;
+            line-height: 36px;
+            font-size: 16px;
+        }
+
+        #filter {
+            border-radius: 6px;
+            border-width: 1px;
+            border-color: transparent;
+            background-color: rgb(235, 245, 255);
+            height: 36px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #filterText {
+            color: rgb(56, 88, 152);
+            font-size: 16px;
+            font-weight: 600;
+            text-overflow: ellipsis;
+        }
+
+
       </style>
   </head>
   <body>
-    <h1>Filter by odometer:</h1>
-    <div style="display: block;">
+    <div id="wrap">
         <div id="filterForm">
-            <label for="lowFilter">Low</label>
-            <input list="odometer-presets" id="lowFilter" name="lowFilter" type="search">
-            <span>to</span>
-            <label for="highFilter">High</label>
-            <input list="odometer-presets" id="highFilter" name="highFilter" type="search">
-            <button id="filter">Filter</button>
+            <h1 id="filterHeading" class="fbFont">Filter by odometer:</h1>
+            <div id="range">
+                <div class="filterWrap">
+                    <label class="filterLabel fbFont" for="lowFilter"></label>
+                    <input class="filterInput fbFont" id="lowFilter" name="lowFilter" placeholder="Min">
+                    <select name="odometerPresets" class="filterDropdown">
+                        <option value="0">0</option>
+                        <option value="10000">10000</option>
+                        <option value="20000">20000</option>
+                        <option value="50000">50000</option>
+                        <option value="75000">75000</option>
+                        <option value="100000">100000</option>
+                        <option value="125000">125000</option>
+                        <option value="150000">150000</option>
+                        <option value="175000">175000</option>
+                        <option value="200000">200000</option>
+                    </select>
+                </div>
+                <span id="to" class="fbFont">to</span>
+                <div class="filterWrap">
+                    <label for="highFilter"></label>
+                    <input class="filterInput fbFont" id="highFilter" name="highFilter" placeholder="Max">
+                    <select name="odometerPresets" class="filterDropdown">
+                        <option value="0">0</option>
+                        <option value="10000">10000</option>
+                        <option value="20000">20000</option>
+                        <option value="50000">50000</option>
+                        <option value="75000">75000</option>
+                        <option value="100000">100000</option>
+                        <option value="125000">125000</option>
+                        <option value="150000">150000</option>
+                        <option value="175000">175000</option>
+                        <option value="200000">200000</option>
+                    </select>
+                </div>
+            </div>
+            <button id="filter" aria-label="Filter listings by odometer">
+                <span id="filterText" class="fbFont">Filter</span>
+            </button>
             <datalist id="odometer-presets">
               <option value="0"></option>
               <option value="10000"></option>
