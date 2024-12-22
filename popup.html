@@ -89,36 +89,12 @@
             <div id="range">
                 <div class="filterWrap">
                     <label class="filterLabel fbFont" for="lowFilter"></label>
-                    <input class="filterInput fbFont" id="lowFilter" name="lowFilter" placeholder="Min">
-                    <select name="odometerPresets" class="filterDropdown">
-                        <option value="0">0</option>
-                        <option value="10000">10000</option>
-                        <option value="20000">20000</option>
-                        <option value="50000">50000</option>
-                        <option value="75000">75000</option>
-                        <option value="100000">100000</option>
-                        <option value="125000">125000</option>
-                        <option value="150000">150000</option>
-                        <option value="175000">175000</option>
-                        <option value="200000">200000</option>
-                    </select>
+                    <input class="filterInput fbFont" id="lowFilter" name="lowFilter" list="odometer-presets" placeholder="Min">
                 </div>
                 <span id="to" class="fbFont">to</span>
                 <div class="filterWrap">
                     <label for="highFilter"></label>
-                    <input class="filterInput fbFont" id="highFilter" name="highFilter" placeholder="Max">
-                    <select name="odometerPresets" class="filterDropdown">
-                        <option value="0">0</option>
-                        <option value="10000">10000</option>
-                        <option value="20000">20000</option>
-                        <option value="50000">50000</option>
-                        <option value="75000">75000</option>
-                        <option value="100000">100000</option>
-                        <option value="125000">125000</option>
-                        <option value="150000">150000</option>
-                        <option value="175000">175000</option>
-                        <option value="200000">200000</option>
-                    </select>
+                    <input class="filterInput fbFont" id="highFilter" name="highFilter" list="odometer-presets" placeholder="Max">
                 </div>
             </div>
             <button id="filter" aria-label="Filter listings by odometer">
