@@ -22,7 +22,6 @@ observer.observe(grid, observerConfig);
 
 function resetFilter() {
     let hidden = document.getElementsByClassName("mileageFiltered");
-    debugger;
     while (hidden.length > 0) {
         hidden[0].classList.remove("mileageFiltered");
     }
