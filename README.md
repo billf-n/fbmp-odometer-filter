@@ -1,1 +1,1 @@
-A mileage filter for Facebook marketplace vehicle listings.
+A mileage/odometer filter for Facebook marketplace vehicle listings.
