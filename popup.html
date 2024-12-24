@@ -89,12 +89,24 @@
             <div id="range">
                 <div class="filterWrap">
                     <label class="filterLabel fbFont" for="lowFilter"></label>
-                    <input class="filterInput fbFont" id="lowFilter" name="lowFilter" list="odometer-presets" placeholder="Min">
+                    <input class="filterInput fbFont" 
+                    id="lowFilter" name="lowFilter" 
+                    inputmode="numeric" 
+                    list="odometer-presets" 
+                    pattern="[0-9]+"
+                    autocomplete="off" 
+                    placeholder="Min">
                 </div>
                 <span id="to" class="fbFont">to</span>
                 <div class="filterWrap">
                     <label for="highFilter"></label>
-                    <input class="filterInput fbFont" id="highFilter" name="highFilter" list="odometer-presets" placeholder="Max">
+                    <input class="filterInput fbFont" 
+                    id="highFilter" name="highFilter" 
+                    inputmode="numeric" 
+                    list="odometer-presets" 
+                    pattern="[0-9]+"
+                    autocomplete="off" 
+                    placeholder="Max">
                 </div>
             </div>
             <button id="filter" aria-label="Filter listings by odometer">
