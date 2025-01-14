@@ -3,8 +3,9 @@ let lowFilter = 0;
 let highFilter = 0;
 let listingsChecked = 0;
 
-// let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex xcud41i x4vbgl9 x139jcc6");
-// grid = grid[0];
+// this depends on the styling of the site - if that changes, this won't work
+let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex xcud41i x4vbgl9 x139jcc6");
+grid = grid[0];
 
 // this bit makes sure that when new elements are loaded, they are filtered as well.
 const observerConfig = { attributes: false, childList: true, subtree: true };
@@ -29,10 +30,6 @@ function resetFilter() {
 }
 
 function filterListings() {
-    // this depends on the styling of the site - if that changes, this won't work
-    let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex xcud41i x4vbgl9 x139jcc6");
-    grid = grid[0];
-
     for (let i=listingsChecked; i<grid.children.length; i++) {
         let listing = grid.children[i];
         let listingInfo;
