@@ -58,26 +58,27 @@ function filterListings() {
         mileage.slice(-2);
         if (mileage.slice(-2) === "km") {
             if (mileage.slice(-4,-3) === "K") {
-                mileageNumber = mileage.slice(0, -4) * 1000;
+                mileageNumber = parseInt(mileage.slice(0, -4)) * 1000;
             }
             else if (mileage.slice(-4,-3) === "M") {
-                mileageNumber = mileage.slice(0, -4) * 1000000;
+                mileageNumber = parseInt(mileage.slice(0, -4)) * 1000000;
             }
             else {
-                mileageNumber = mileage.slice(0, -3);
+                mileageNumber = parseInt(mileage.slice(0, -3));
             }
         }
         else if (mileage.slice(-5) === "miles") {
             if (mileage.slice(-7,-6) === "K") {
-                mileageNumber = mileage.slice(0, -6) * 1000;
+                mileageNumber = parseInt(mileage.slice(0, -7)) * 1000;
             }
             else if (mileage.slice(-7,-6) === "M") {
-                mileageNumber = mileage.slice(0, -6) * 1000000;
+                mileageNumber = parseInt(mileage.slice(0, -7)) * 1000000;
             }
             else {
-                mileageNumber = mileage.slice(0, -6);
+                mileageNumber = parseInt(mileage.slice(0, -6));
             }
         }
+        debugger;
         if (mileageNumber < lowFilter || (highFilter != 0 && mileageNumber > highFilter)) {
             listing.classList.add("mileageFiltered");
         }
