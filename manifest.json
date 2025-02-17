@@ -5,9 +5,9 @@
     "description": "Adds an odometer filter for vehicles to Facebook marketplace.",
     "content_scripts": [
         {
-            "matches": ["https://www.facebook.com/marketplace/*"],
+            "matches": ["*://www.facebook.com/marketplace/*"],
             "css": ["mileage-filter.css"],
-            "js": ["getFirstChild.js", "filter.js"]
+            "js": ["filter.js"]
         }
     ],
     "action": {

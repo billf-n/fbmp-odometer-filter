@@ -1,3 +1,9 @@
+function getFirstChild(element, i) {
+    if (i > 1) {
+        return getFirstChild(element.children[0], i-1);
+    }
+    else return element.firstElementChild;
+}
 
 let lowFilter = 0;
 let highFilter = 0;
@@ -75,14 +81,12 @@ function filterListings() {
                 mileageNumber = parseInt(mileage.slice(0, -6));
             }
         }
-        debugger;
         if (mileageNumber < lowFilter || (highFilter != 0 && mileageNumber > highFilter)) {
             listing.classList.add("mileageFiltered");
         }
         listingsChecked = i;
     }
 }
-
 
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
@@ -101,3 +105,5 @@ chrome.runtime.onMessage.addListener(
         filterListings();
     }
 );
+
+

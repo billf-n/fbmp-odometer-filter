@@ -1,12 +1,8 @@
 function getFirstChild(element, i) {
-	//try {
-	if (i > 1) {
-		return getFirstChild(element.children[0], i - 1);
-	}
-	else return element.firstElementChild;
-	// } catch (TypeError) {
-	//     return -1;
-	// }
+    if (i > 1) {
+        return getFirstChild(element.children[0], i-1);
+    }
+    else return element.firstElementChild;
 }
 
 const lowFilter = document.getElementById("lowFilter");
