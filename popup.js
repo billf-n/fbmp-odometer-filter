@@ -1,9 +1,15 @@
 function getFirstChild(element, i) {
-    if (i > 1) {
-        return getFirstChild(element.children[0], i-1);
-    }
-    else return element.firstElementChild;
+	if (i > 1) {
+		return getFirstChild(element.children[0], i - 1);
+	}
+	else return element.firstElementChild;
 }
+
+async function sendMessageToActiveTab(message) {
+	const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+	const response = await chrome.tabs.sendMessage(tab.id, message);
+	// TODO: Do something with the response.
+  }
 
 const lowFilter = document.getElementById("lowFilter");
 const highFilter = document.getElementById("highFilter");
@@ -11,13 +17,10 @@ const highFilter = document.getElementById("highFilter");
 validateInput(lowFilter);
 validateInput(highFilter);
 
-document.getElementById("filter").addEventListener("click", (e) => {
-
-	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-		chrome.tabs.sendMessage(tabs[0].id, {
-			lowFilter: document.getElementById("lowFilter").value,
-			highFilter: document.getElementById("highFilter").value
-		});
+document.getElementById("filter").addEventListener("click", () => {
+	sendMessageToActiveTab({
+		lowFilter: document.getElementById("lowFilter").value,
+		highFilter: document.getElementById("highFilter").value
 	});
 });
 

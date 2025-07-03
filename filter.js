@@ -1,6 +1,6 @@
 function getFirstChild(element, i) {
     if (i > 1) {
-        return getFirstChild(element.children[0], i-1);
+        return getFirstChild(element.children[0], i - 1);
     }
     else return element.firstElementChild;
 }
@@ -10,7 +10,7 @@ let highFilter = 0;
 let listingsChecked = 0;
 
 // this depends on the styling of the site - if that changes, this won't work
-let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex xcud41i x4vbgl9 x139jcc6");
+let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex x1lxpwgx x4vbgl9 x165d6jo");
 grid = grid[0];
 
 // this bit makes sure that when new elements are loaded, they are filtered as well.
@@ -36,7 +36,7 @@ function resetFilter() {
 }
 
 function filterListings() {
-    for (let i=listingsChecked; i<grid.children.length; i++) {
+    for (let i = listingsChecked; i < grid.children.length; i++) {
         let listing = grid.children[i];
         let listingInfo;
         try {
@@ -55,15 +55,15 @@ function filterListings() {
             continue;
         }
         let mileage = mileageText.textContent;
-    
+
         let mileageNumber = 0;
-    
+
         mileage.slice(-2);
         if (mileage.slice(-2) === "km") {
-            if (mileage.slice(-4,-3) === "K") {
+            if (mileage.slice(-4, -3) === "K") {
                 mileageNumber = parseInt(mileage.slice(0, -4)) * 1000;
             }
-            else if (mileage.slice(-4,-3) === "M") {
+            else if (mileage.slice(-4, -3) === "M") {
                 mileageNumber = parseInt(mileage.slice(0, -4)) * 1000000;
             }
             else {
@@ -71,10 +71,10 @@ function filterListings() {
             }
         }
         else if (mileage.slice(-5) === "miles") {
-            if (mileage.slice(-7,-6) === "K") {
+            if (mileage.slice(-7, -6) === "K") {
                 mileageNumber = parseInt(mileage.slice(0, -7)) * 1000;
             }
-            else if (mileage.slice(-7,-6) === "M") {
+            else if (mileage.slice(-7, -6) === "M") {
                 mileageNumber = parseInt(mileage.slice(0, -7)) * 1000000;
             }
             else {
@@ -88,22 +88,21 @@ function filterListings() {
     }
 }
 
-chrome.runtime.onMessage.addListener(
-    (message, sender, sendResponse) => {
-        resetFilter();
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    resetFilter();
 
-        if (message.lowFilter != "") {
-            lowFilter = parseInt(message.lowFilter);
-        }
-        else {lowFilter = 0;}
-
-        if (message.highFilter != "") {
-            highFilter = parseInt(message.highFilter);
-        }
-        else {highFilter = 0;}
-
-        filterListings();
+    if (message.lowFilter != "") {
+        lowFilter = parseInt(message.lowFilter);
     }
-);
+    else { lowFilter = 0; }
+
+    if (message.highFilter != "") {
+        highFilter = parseInt(message.highFilter);
+    }
+    else { highFilter = 0; }
+
+    filterListings();
+    return true;
+});
 
 
