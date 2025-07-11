@@ -9,9 +9,9 @@ let lowFilter = 0;
 let highFilter = 0;
 let listingsChecked = 0;
 
-// this depends on the styling of the site - if that changes, this won't work
-let grid = document.getElementsByClassName("x8gbvx8 x78zum5 x1q0g3np x1a02dak x1nhvcw1 x1rdy4ex x1lxpwgx x4vbgl9 x165d6jo");
-grid = grid[0];
+// Use full XPath to get the grid of listings.
+// this depends on the _layout_ of the site - if that changes, this won't work
+let grid = document.evaluate('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div[3]/div/div[2]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
 // this bit makes sure that when new elements are loaded, they are filtered as well.
 const observerConfig = { attributes: false, childList: true, subtree: true };
