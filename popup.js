@@ -1,41 +1,59 @@
-function getFirstChild(element, i) {
-	if (i > 1) {
-		return getFirstChild(element.children[0], i - 1);
-	}
-	else return element.firstElementChild;
+function filterListings(minMileage, maxMileage) {
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    let currentTab = tabs[0];
+    let newUrl;
+    if (maxMileage != "") {
+      if (currentTab.url.includes("maxMileage=")) {
+        newUrl = currentTab.url.replace(
+          /maxMileage=\d+/,
+          `maxMileage=${maxMileage}`,
+        );
+      } else if (currentTab.url.includes("?")) {
+        newUrl = currentTab.url + `&maxMileage=${maxMileage}`;
+      } else {
+        newUrl = currentTab.url + `?maxMileage=${maxMileage}`;
+      }
+    }
+    if (minMileage != "") {
+      if (currentTab.url.includes("minMileage=")) {
+        newUrl = currentTab.url.replace(
+          /minMileage=\d+/,
+          `minMileage=${minMileage}`,
+        );
+      } else if (currentTab.url.includes("?")) {
+        newUrl = currentTab.url + `&minMileage=${minMileage}`;
+      } else {
+        newUrl = currentTab.url + `?minMileage=${minMileage}`;
+      }
+    }
+    // console.log(`Updating  to: ${newUrl}`);
+    chrome.tabs.update(currentTab.id, { url: newUrl });
+  });
 }
-
-async function sendMessageToActiveTab(message) {
-	const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-	const response = await chrome.tabs.sendMessage(tab.id, message);
-	// TODO: Do something with the response.
-  }
-
-const lowFilter = document.getElementById("lowFilter");
-const highFilter = document.getElementById("highFilter");
-
-validateInput(lowFilter);
-validateInput(highFilter);
 
 document.getElementById("filter").addEventListener("click", () => {
-	sendMessageToActiveTab({
-		lowFilter: document.getElementById("lowFilter").value,
-		highFilter: document.getElementById("highFilter").value
-	});
+  filterListings(
+    document.getElementById("lowFilter").value,
+    document.getElementById("highFilter").value,
+  );
 });
 
-function validateInput(element) {
-	element.addEventListener("beforeinput", function (event) {
-		let beforeValue = element.value;
-		event.target.addEventListener(
-			"input",
-			function () {
-				if (element.validity.patternMismatch) {
-					element.value = beforeValue;
-				}
-			},
-			{ once: true }
-		);
-	});
-}
+const lowInput = document.getElementById("lowFilter");
+const lowDropdown = document.getElementById("lowFilterDropdown");
 
+// Populate input when an option is clicked
+lowDropdown.addEventListener("mousedown", (e) => {
+  if (e.target.tagName === "LI") {
+    lowInput.value = e.target.textContent;
+  }
+});
+
+const highInput = document.getElementById("highFilter");
+const highDropdown = document.getElementById("highFilterDropdown");
+
+// Populate input when an option is clicked
+highDropdown.addEventListener("mousedown", (e) => {
+  if (e.target.tagName === "LI") {
+    highInput.value = e.target.textContent;
+  }
+});

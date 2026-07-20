@@ -1,14 +1,16 @@
 {
     "name": "Facebook Marketplace Odometer Filter",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "manifest_version": 3,
     "description": "Adds an odometer filter for vehicles to Facebook marketplace.",
     "content_scripts": [
         {
             "matches": ["*://www.facebook.com/marketplace/*"],
-            "css": ["mileage-filter.css"],
-            "js": ["filter.js"]
+            "css": ["placeholder.css"]
         }
+    ],
+    "permissions": [
+        "activeTab"
     ],
     "action": {
         "default_popup": "popup.html"

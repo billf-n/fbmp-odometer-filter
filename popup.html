@@ -12,6 +12,7 @@
       font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       width: min-content;
+      /* height: 300px; */
     }
 
     .fbFont {
@@ -20,7 +21,7 @@
 
     #filterForm {
       /* display: flex;
-            flex-direction: column; */
+      flex-direction: column; */
       width: min-content;
       margin: 1.5em 1em;
     }
@@ -32,20 +33,20 @@
 
     #range {
       display: flex;
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
     }
 
     .filterWrap {
       display: grid;
     }
 
-    .filterDropdown {
+    /* .filterDropdown {
       position: absolute;
       justify-self: right;
       height: 36px;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
-    }
+    } */
 
     .filterInput {
       width: 160px;
@@ -79,6 +80,39 @@
       font-weight: 600;
       text-overflow: ellipsis;
     }
+
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-list {
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      background: white;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: none;
+      z-index: 10;
+    }
+
+    .dropdown-list li {
+      padding: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .dropdown-list li:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown-container:focus-within .dropdown-list {
+      display: block;
+    }
   </style>
 </head>
 
@@ -89,31 +123,48 @@
       <div id="range">
         <div class="filterWrap">
           <label class="filterLabel fbFont" for="lowFilter"></label>
-          <input class="filterInput fbFont" id="lowFilter" name="lowFilter" inputmode="numeric" list="odometer-presets"
-            type="search" pattern="[0-9]+" autocomplete="off" placeholder="Min">
+          <div class="dropdown-container">
+            <input class="filterInput fbFont" id="lowFilter" name="lowFilter" inputmode="numeric" pattern="[0-9]+"
+              autocomplete="off" placeholder="Min">
+            <ul class="dropdown-list fbFont" id="lowFilterDropdown">
+              <li>0</li>
+              <li>25000</li>
+              <li>50000</li>
+              <li>75000</li>
+              <li>100000</li>
+              <li>125000</li>
+              <li>150000</li>
+              <li>175000</li>
+              <li>200000</li>
+            </ul>
+          </div>
         </div>
+
         <span id="to" class="fbFont">to</span>
+
         <div class="filterWrap">
           <label for="highFilter"></label>
-          <input class="filterInput fbFont" id="highFilter" name="highFilter" inputmode="numeric"
-            type="search" list="odometer-presets" pattern="[0-9]+" autocomplete="off" placeholder="Max">
+          <div class="dropdown-container">
+            <input class="filterInput fbFont" id="highFilter" name="highFilter" inputmode="numeric" pattern="[0-9]+"
+              autocomplete="off" placeholder="Max">
+            <ul class="dropdown-list fbFont" id="highFilterDropdown">
+              <li>0</li>
+              <li>25000</li>
+              <li>50000</li>
+              <li>75000</li>
+              <li>100000</li>
+              <li>125000</li>
+              <li>150000</li>
+              <li>175000</li>
+              <li>200000</li>
+            </ul>
+          </div>
+
         </div>
       </div>
       <button id="filter" aria-label="Filter listings by odometer">
         <span id="filterText" class="fbFont">Filter</span>
       </button>
-      <datalist id="odometer-presets">
-        <option value="0"></option>
-        <option value="10000"></option>
-        <option value="20000"></option>
-        <option value="50000"></option>
-        <option value="75000"></option>
-        <option value="100000"></option>
-        <option value="125000"></option>
-        <option value="150000"></option>
-        <option value="175000"></option>
-        <option value="200000"></option>
-      </datalist>
     </div>
   </div>
 
